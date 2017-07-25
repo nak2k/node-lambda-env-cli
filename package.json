@@ -1,0 +1,37 @@
+{
+  "name": "lambda-env-cli",
+  "version": "0.0.1",
+  "description": "CLI to configure env vars for Lambda",
+  "author": "Kengo Nakatsuka <kengo.nakatsuka@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/nak2k/node-lambda-env-cli/issues"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.89.0",
+    "chalk": "^2.0.1",
+    "debug": "^2.6.8",
+    "yargs": "^8.0.2"
+  },
+  "devDependencies": {},
+  "homepage": "https://github.com/nak2k/node-lambda-env-cli",
+  "keywords": [
+    "aws",
+    "lambda",
+    "environment"
+  ],
+  "license": "MIT",
+  "bin": {
+    "lambda-env": "bin/cli"
+  },
+  "main": "lib",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nak2k/node-lambda-env-cli.git"
+  },
+  "scripts": {},
+  "files": [
+    "README.md",
+    "bin/",
+    "lib/"
+  ]
+}

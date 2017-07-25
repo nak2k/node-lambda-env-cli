@@ -1,0 +1,76 @@
+#!/usr/bin/env node
+// -*- mode: js -*-
+const pkg = require('../package.json');
+const { red } = require('chalk');
+const debug = require('debug')('lambda-env-cli');
+
+const argv = require('yargs')
+  .usage('Usage: lambda-env [options...] <functions>')
+  .option('s', {
+    alias: 'set-env',
+    desc: 'Set environment variables for Lambda',
+    string: true,
+    coerce: args => [].concat(args).reduce((memo, arg) => {
+      const eqlIndex = arg.indexOf('=');
+
+      if (eqlIndex < 0) {
+        throw new Error('A value of --set-env must be a form of \'key=value\'');
+      }
+
+      const name = arg.substr(0, eqlIndex);
+      const value = arg.substr(eqlIndex + 1);
+
+      if (name.length < 2) {
+        throw new Error(`'${name}' is too short name for an environment variable`);
+      }
+
+      memo[name] = value;
+
+      return memo;
+    }, {}),
+  })
+  .option('u', {
+    alias: 'unset-env',
+    desc: 'Unset environment variables for Lambda',
+    string: true,
+    coerce: args => [].concat(args),
+  })
+  .option('f', {
+    alias: 'fingerprint',
+    desc: 'Set environment variables that could be used as a fingerprint for Lambda',
+    boolean: true,
+  })
+  .option('region', {
+    desc: 'Specify a region to configure aws-sdk',
+    string: true,
+  })
+  .option('profile', {
+    desc: 'Specify a profile to configure aws-sdk',
+    string: true,
+  })
+  .demandCommand(1, 'Lambda function not specified')
+  .version()
+  .help()
+  .example('lambda-env MyFunction -s foo=1 -s bar=2',
+    'Set environment variable `foo` and `bar`')
+  .example('lambda-env MyFunction -u foo,bar',
+    'Unset environment variable `foo` and `bar`')
+  .example('lambda-env MyFunction -f',
+    'Set environment variable `LAMBDA_CODE_SHA256` and `LAMBDA_LAST_MODIFIED`')
+  .locale('en')
+  .fail((msg, err, yargs) => {
+    if (err) {
+      debug(err);
+    }
+
+    console.error(red('ERROR') + ': ' + msg);
+    console.error();
+    console.error('Specify --help for available options');
+
+    process.exit(1);
+  })
+  .argv;
+
+const { run } = require('..');
+
+run(argv);
