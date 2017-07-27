@@ -33,7 +33,7 @@ Set the following environment variables useful as fingerprint of Lambda function
 
 - `LAMBDA_CODE_SHA256`
     - SHA 256 hash value of Lambda function package.
-    - This value is encoded with base64. So this value should re-encode with base64url if necessary.
+    - This value is encoded with base64. So this value should re-encode with [base64url](https://www.npmjs.com/package/base64url) if necessary.
 - `LAMBDA_LAST_MODIFIED`
     - Time stamp of Lambda function update.
 
