@@ -7,10 +7,10 @@
     "url": "https://github.com/nak2k/node-lambda-env-cli/issues"
   },
   "dependencies": {
-    "aws-sdk": "^2.89.0",
-    "chalk": "^2.0.1",
-    "debug": "^2.6.8",
-    "yargs": "^8.0.2"
+    "aws-sdk": "^2.156.0",
+    "chalk": "^2.3.0",
+    "debug": "^3.1.0",
+    "yargs": "^10.0.3"
   },
   "devDependencies": {},
   "homepage": "https://github.com/nak2k/node-lambda-env-cli",
