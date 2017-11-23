@@ -1,6 +1,6 @@
 {
   "name": "lambda-env-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "CLI to configure env vars for Lambda",
   "author": "Kengo Nakatsuka <kengo.nakatsuka@gmail.com>",
   "bugs": {
